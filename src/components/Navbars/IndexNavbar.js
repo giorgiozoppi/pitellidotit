@@ -27,12 +27,21 @@ import {
   NavItem,
   NavLink,
   Nav,
-  Container
+  Container,
+  ButtonDropdown,
+  DropdownItem,
+  DropdownToggle,
+  DropdownMenu
 } from "reactstrap";
 
 function IndexNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [navbarCollapse, setNavbarCollapse] = React.useState(false);
+  const [dropdownOpen, setOpen] = React.useState(false);
+
+  const toggle = () => setOpen(!dropdownOpen);
+
+  //const toggle = () => setDropdownOpen(prevState => !prevState);
 
   const toggleNavbarCollapse = () => {
     setNavbarCollapse(!navbarCollapse);
@@ -112,6 +121,23 @@ function IndexNavbar() {
                 <p className="d-lg-none">Twitter</p>
               </NavLink>
             </NavItem>
+            <NavItem>
+            <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
+      <DropdownToggle caret>
+        Menu
+      </DropdownToggle>
+      <DropdownMenu>
+        <DropdownItem header>Mappa Sito</DropdownItem>
+        <DropdownItem>Storia di Pitelli</DropdownItem>
+        <DropdownItem>Proloco Pitelli</DropdownItem>
+        <DropdownItem divider />
+        <DropdownItem>Bed&amp;Breakfasts</DropdownItem>
+        <DropdownItem>Eventi</DropdownItem>
+        <DropdownItem>Piatti tipici</DropdownItem>
+      </DropdownMenu>
+    </ButtonDropdown>
+      </NavItem>
+
           </Nav>
         </Collapse>
       </Container>
